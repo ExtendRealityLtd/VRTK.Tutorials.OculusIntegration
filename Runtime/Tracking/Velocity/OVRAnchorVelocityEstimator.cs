@@ -8,6 +8,11 @@
         [Tooltip("The GameObject anchor from the OVRCameraRig to track velocity for.")]
         public GameObject trackedGameObject;
 
+        public override bool IsActive()
+        {
+            return trackedGameObject != null && trackedGameObject.activeInHierarchy && isActiveAndEnabled;
+        }
+
         protected override Vector3 DoGetAngularVelocity()
         {
             switch (trackedGameObject.name)

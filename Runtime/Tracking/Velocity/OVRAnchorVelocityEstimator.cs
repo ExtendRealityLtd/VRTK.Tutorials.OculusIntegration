@@ -15,7 +15,16 @@
 
         protected override Vector3 DoGetVelocity()
         {
-            throw new System.NotImplementedException();
+            switch (trackedGameObject.name)
+            {
+                case "CenterEyeAnchor":
+                    return OVRManager.isHmdPresent ? OVRPlugin.GetNodeVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero;
+                case "LeftHandAnchor":
+                    return Vector3.zero;
+                case "RightHandAnchor":
+                    return Vector3.zero;
+            }
+            return Vector3.zero;
         }
     }
 }

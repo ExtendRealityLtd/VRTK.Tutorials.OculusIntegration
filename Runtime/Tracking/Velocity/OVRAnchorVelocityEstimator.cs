@@ -20,9 +20,9 @@
                 case "CenterEyeAnchor":
                     return OVRManager.isHmdPresent ? OVRPlugin.GetNodeVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero;
                 case "LeftHandAnchor":
-                    return Vector3.zero;
+                    return OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
                 case "RightHandAnchor":
-                    return Vector3.zero;
+                    return OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
             }
             return Vector3.zero;
         }

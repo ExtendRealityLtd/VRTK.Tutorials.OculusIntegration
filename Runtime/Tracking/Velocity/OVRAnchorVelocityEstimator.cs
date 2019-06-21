@@ -20,11 +20,11 @@
             switch (trackedGameObject.name)
             {
                 case "CenterEyeAnchor":
-                    return OVRManager.isHmdPresent ? OVRPlugin.GetNodeAngularVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero;
+                    return trackedGameObject.transform.rotation * (OVRManager.isHmdPresent ? OVRPlugin.GetNodeAngularVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero);
                 case "LeftHandAnchor":
-                    return OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
+                    return trackedGameObject.transform.rotation * OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
                 case "RightHandAnchor":
-                    return OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
+                    return trackedGameObject.transform.rotation * OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
             }
             return Vector3.zero;
         }

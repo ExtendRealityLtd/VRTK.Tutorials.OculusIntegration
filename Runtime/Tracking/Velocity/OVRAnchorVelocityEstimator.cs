@@ -5,8 +5,10 @@
 
     public class OVRAnchorVelocityEstimator : VelocityTracker
     {
-        [Tooltip("The GameObject anchor from the OVRCameraRig to track velocity for.")]
+        [Tooltip("The anchor from the OVRCameraRig to track velocity for.")]
         public GameObject trackedGameObject;
+        [Tooltip("An optional object to consider the source relative to when retrieving velocities.")]
+        public GameObject relativeTo;
 
         public override bool IsActive()
         {
@@ -32,11 +34,11 @@
             switch (trackedGameObject.name)
             {
                 case "CenterEyeAnchor":
-                    return OVRManager.isHmdPresent ? OVRPlugin.GetNodeVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero;
+                    return relativeTo.transform.rotation * (OVRManager.isHmdPresent ? OVRPlugin.GetNodeVelocity(OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render).FromFlippedZVector3f() : Vector3.zero);
                 case "LeftHandAnchor":
-                    return OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
+                    return relativeTo.transform.rotation * OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
                 case "RightHandAnchor":
-                    return OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+                    return relativeTo.transform.rotation * OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
             }
             return Vector3.zero;
         }

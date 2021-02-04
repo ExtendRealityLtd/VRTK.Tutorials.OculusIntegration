@@ -1,3 +1,7 @@
+## Deprecated Repository
+
+This tutorial has been deprecated in place of newer tutorials and how to guides included with the [Tilia.SDK.OculusIntegration.Unity](https://github.com/ExtendRealityLtd/Tilia.SDK.OculusIntegration.Unity) repository. Please see the [Documentation](https://github.com/ExtendRealityLtd/Tilia.SDK.OculusIntegration.Unity/tree/master/Documentation) located on that repository.
+
 # VRTK Tutorials - Oculus Integration
 
 ## Introduction
